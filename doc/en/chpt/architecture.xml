@@ -59,7 +59,7 @@ Facelet facelet = factory.getFacelet("/example.xml");]]></programlisting>
 		<sect2 id="architecture-api-facelet">
 			<title>Facelet</title>
 			<para>
-				The <literal>Facelet</literal> class is similar to a lot of the Servlet API, such that it's stateless and can handle multiple threads accessing it at once.  The Facelet's soul responsibility is to populate a tree of <literal>UIComponents</literal> for manipulation and, of course, rendering.
+				The <literal>Facelet</literal> class is similar to a lot of the Servlet API, such that it's stateless and can handle multiple threads accessing it at once.  The Facelet's soul responsibility is to populate a tree of <literal>UIComponents</literal> for manipulation and, of course, rendering.  A single instance is representative of physical XML resource, compiled into memory once and shared for all requests.
 			</para>
 			<programlisting><![CDATA[FacesContext faces = FacesContext.getCurrentInstance();
 Facelet facelet = factory.getFacelet("/example.xml");
