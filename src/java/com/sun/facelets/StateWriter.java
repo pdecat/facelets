@@ -45,7 +45,7 @@ import com.sun.facelets.util.FastWriter;
  * </ul>
  *
  * @author Adam Winer
- * @version $Id: StateWriter.java,v 1.1 2006-04-12 05:50:45 adamwiner Exp $
+ * @version $Id: StateWriter.java,v 1.1.8.1 2006-12-03 18:59:33 jhook Exp $
  */
 final class StateWriter extends Writer {
 
