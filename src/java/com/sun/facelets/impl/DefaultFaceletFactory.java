@@ -220,7 +220,10 @@ public final class DefaultFaceletFactory extends FaceletFactory {
 					.createExpressionFactory(), url, alias, h);
 			return f;
 		} catch (FileNotFoundException fnfe) {
-			throw new FileNotFoundException("Facelet " + alias + " not found at: "
+			if (log.isLoggable(Level.WARNING)) {
+				log.warning(alias + " not found at " + url.toExternalForm());
+			}
+			throw new FileNotFoundException("Facelet Not Found: "
 					+ url.toExternalForm());
 		}
 	}
