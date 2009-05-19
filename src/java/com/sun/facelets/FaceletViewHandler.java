@@ -309,7 +309,9 @@ public class FaceletViewHandler extends ViewHandler {
 
     public UIViewRoot restoreView(FacesContext context, String viewId) {
         if (UIDebug.debugRequest(context)) {
-            return new UIViewRoot();
+            UIViewRoot result = (UIViewRoot)
+                context.getApplication().createComponent(UIViewRoot.COMPONENT_TYPE);
+            return result;
         }
 
         if (!this.buildBeforeRestore || !handledByFacelets(viewId)) {
@@ -794,7 +796,9 @@ public class FaceletViewHandler extends ViewHandler {
 
     public UIViewRoot createView(FacesContext context, String viewId) {
         if (UIDebug.debugRequest(context)) {
-            return new UIViewRoot();
+            UIViewRoot result = (UIViewRoot)
+                context.getApplication().createComponent(UIViewRoot.COMPONENT_TYPE);
+            return result;
         }
         return this.parent.createView(context, viewId);
     }
