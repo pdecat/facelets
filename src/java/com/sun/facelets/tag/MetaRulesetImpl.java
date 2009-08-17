@@ -30,7 +30,7 @@ import com.sun.facelets.util.ParameterCheck;
 /**
  * 
  * @author Jacob Hookom
- * @version $Id: MetaRulesetImpl.java,v 1.3 2008-07-13 19:01:35 rlubke Exp $
+ * @version $Id: MetaRulesetImpl.java,v 1.4 2009-08-17 18:07:34 rlubke Exp $
  */
 final class MetaRulesetImpl extends MetaRuleset {
 
@@ -97,8 +97,8 @@ final class MetaRulesetImpl extends MetaRuleset {
     }
 
     private final MetadataTarget getMetadataTarget() {
-        String key = this.type.getName();
-        MetadataTarget meta = (MetadataTarget) metadata.get(key);
+
+        MetadataTarget meta = (MetadataTarget) metadata.get(type);
         if (meta == null) {
             try {
                 meta = new MetadataTargetImpl(type);
@@ -106,7 +106,7 @@ final class MetaRulesetImpl extends MetaRuleset {
                 throw new TagException(this.tag,
                         "Error Creating TargetMetadata", e);
             }
-            metadata.put(key, meta);
+            metadata.put(type, meta);
         }
         return meta;
     }
