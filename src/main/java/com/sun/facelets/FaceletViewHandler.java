@@ -175,6 +175,12 @@ public class FaceletViewHandler extends ViewHandler {
         String param = external.getInitParameter(PARAM_DEVELOPMENT);
         this.developmentMode = "true".equals(param);
 
+        if (developmentMode) {
+            log.info("Facelets development mode enabled.");
+        } else {
+            log.info("Facelets production mode enabled.");
+        }
+        
         String restoreMode = external
                 .getInitParameter(PARAM_BUILD_BEFORE_RESTORE);
         this.buildBeforeRestore = "true".equals(restoreMode);

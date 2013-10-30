@@ -109,6 +109,9 @@ public abstract class FaceletTestCase extends TestCase implements ResourceResolv
                 context);
         this.servletResponse = new MockHttpServletResponse();
 
+        // Enable facelets.DEVELOPMENT
+        this.servletContext.setInitParameter(FaceletViewHandler.PARAM_DEVELOPMENT, "true");
+
         // initialize Faces
         this.initFaces();
 

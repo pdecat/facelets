@@ -18,8 +18,11 @@ import javax.el.ELException;
 import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.ValueExpression;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import com.sun.facelets.FaceletContext;
+import com.sun.facelets.FaceletViewHandler;
 import com.sun.facelets.el.ELText;
 import com.sun.facelets.el.TagMethodExpression;
 import com.sun.facelets.el.TagValueExpression;
@@ -276,8 +279,30 @@ public final class TagAttribute {
      */
     public String toString() {
         if (this.string == null) {
-            this.string = this.location + " " + this.qName + "=\"" + this.value
-                    + "\"";
+            // Retrieve facelets.DEVELOPMENT parameter value
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            ExternalContext context = facesContext.getExternalContext();
+            boolean developmentMode = "true".equals(context.getInitParameter(FaceletViewHandler.PARAM_DEVELOPMENT));
+
+            if (developmentMode) {
+                // In development mode, keep as much information as possible for
+                // debugging purposes
+                StringBuilder sb = new StringBuilder(500);
+                sb.append(this.location);
+                sb.append(" ");
+                sb.append(this.qName);
+                sb.append("=\"");
+                sb.append(this.value);
+                sb.append("\"");
+
+                this.string = sb.toString();
+            } else {
+                // In production mode, spare memory by reusing the same string
+                // literal.
+                // This results in megabytes of savings but loss of debugging
+                // information
+                this.string = "no debbuging information available";
+            }
         }
         return this.string;
     }
