@@ -52,7 +52,7 @@
 
   <path id="compile.classpath">
     <pathelement location="${build}/classes"/>
-    <fileset dir="lib" includes="*.jar"/>
+    <fileset dir="${lib}" includes="*.jar"/>
     <pathelement location="${}"/>
   </path>
 
