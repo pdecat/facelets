@@ -20,6 +20,7 @@ import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.faces.FacesException;
@@ -100,6 +101,9 @@ public abstract class FaceletTestCase extends TestCase implements ResourceResolv
         super.setUp();
         URI context = this.getContext();
 
+        // Unit tests expect the US locale for dates and numbers
+        Locale.setDefault(Locale.US);
+
         this.servletContext = new MockServletContext(context);
         this.servletRequest = new MockHttpServletRequest(this.servletContext,
                 context);
@@ -123,6 +127,9 @@ public abstract class FaceletTestCase extends TestCase implements ResourceResolv
         
         ResponseWriter rw = faces.getRenderKit().createResponseWriter(new StringWriter(), null, null);
         faces.setResponseWriter(rw);
+
+        // Form renderer invokes FaceletViewHandler.writeState so initialize a StateWriter
+        new StateWriter(rw, 1024);
     }
     
     public void setRequest(String method, String path, OutputStream os) {

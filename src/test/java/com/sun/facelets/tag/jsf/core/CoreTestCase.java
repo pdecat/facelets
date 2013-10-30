@@ -61,8 +61,11 @@ public class CoreTestCase extends FaceletTestCase {
         assertEquals("action2 listeners", 2,
                 action2.getActionListeners().length);
 
-        assertEquals("action2 binding", listener,
-                action2.getActionListeners()[0]);
+        assertNull(faces.getExternalContext().getRequestMap().get("CoreTestCase.testActionListenerHandler"));
+
+        action2.getActionListeners()[0].processAction(null);
+
+        assertEquals("OK", faces.getExternalContext().getRequestMap().get("CoreTestCase.testActionListenerHandler"));
     }
 
     public void testAttributeHandler() throws Exception {

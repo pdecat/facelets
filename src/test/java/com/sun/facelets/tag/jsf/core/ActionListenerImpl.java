@@ -14,6 +14,7 @@
 
 package com.sun.facelets.tag.jsf.core;
 
+import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
@@ -24,6 +25,7 @@ public class ActionListenerImpl implements ActionListener {
     }
 
     public void processAction(ActionEvent e) throws AbortProcessingException {
-
+        FacesContext faces = FacesContext.getCurrentInstance();
+        faces.getExternalContext().getRequestMap().put("CoreTestCase.testActionListenerHandler", "OK");
     }
 }
