@@ -1,4 +1,7 @@
+.classpath
+.project
 build.properties
 build/
 dist/
 lib/
+target/

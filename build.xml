@@ -27,13 +27,13 @@
   <property name="compile.debug"       value="true"/>
   <property name="compile.deprecation" value="false"/>
   <property name="compile.optimize"    value="true"/>
-  <property name="compile.source"      value="1.4"/>
-  <property name="compile.target"      value="1.4"/>
-  <property name="build"               value="build"/>
-  <property name="dist"                value="dist"/>
-  <property name="lib"                 value="lib"/>
-  <property name="release"             value="release"/>
-  <property name="doc"                 value="doc"/>
+  <property name="compile.source"      value="1.5"/>
+  <property name="compile.target"      value="1.5"/>
+  <property name="build"               value="target/build"/>
+  <property name="dist"                value="target/dist"/>
+  <property name="lib"                 value="target/lib"/>
+  <property name="release"             value="target/release"/>
+  <property name="doc"                 value="target/doc"/>
   <property name="jar"                 value="jsf-facelets.jar"/>
 
   <!-- Binary dependency info -->
@@ -72,14 +72,14 @@
     <mkdir dir="${dist}/docs"/>
     <mkdir dir="${dist}/docs/api"/>
     <mkdir dir="${dist}/docs/dev"/>
-    <mkdir dir="${dist}/src"/>
+    <mkdir dir="${dist}/src/main"/>
     <mkdir dir="${dist}/demo"/>
 	
     <!-- CVS Dependencies -->
     <mkdir dir="${lib}"/>
 
     <uptodate property="docs.uptodate" targetfile="${build}/docs/api/index.html">
-      <srcfiles dir="src" includes="**/*.java" />
+      <srcfiles dir="src/main" includes="**/*.java" />
     </uptodate>
   </target>
   
@@ -108,8 +108,8 @@
 	  <antcall target="dist"/>
       <dirname property="@{destfile}.parent" file="@{destfile}"/>
       <mkdir dir="${@{destfile}.parent}"/>
-	  <mkdir dir="build/@{root}/build"/>
-	  <compile src="@{root}/src" dest="build/@{root}/build"/>
+	  <mkdir dir="build/@{root}/target/build"/>
+	  <compile src="@{root}/src/main" dest="build/@{root}/target/build"/>
       <war destfile="@{destfile}"
            webxml="@{root}/web/WEB-INF/web.xml">
 		<fileset dir="@{root}/web/">
@@ -144,10 +144,10 @@
    description="Compile API classes (Default)">
                                                                                 
     <!-- Java classes -->
-    <compile src="src/java" dest="${build}/classes"/>
+    <compile src="src/main/java" dest="${build}/classes"/>
 
     <copy todir="${build}/classes">
-      <fileset dir="src/etc">
+      <fileset dir="src/main/resources">
         <include name="**/*.properties"/>
         <include name="**/*.xml"/>
         <include name="**/*.dtd"/>
@@ -165,7 +165,7 @@
              additionalparam="-J-DproxyHost=${http.proxy.host} -J-DproxyPort=${http.proxy.port}"
              windowtitle="JavaServer Faces Facelets"
              destdir="${build}/docs/api"
-             sourcepath="src/java"
+             sourcepath="src/main/java"
              doctitle="Facelets API Documentation"
              bottom="Copyright &amp;copy; 2005 All Rights Reserved." packagenames="com.sun.facelets.*"
              use="true">
