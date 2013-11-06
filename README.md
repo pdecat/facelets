@@ -1,7 +1,7 @@
 Description
 ===========
 
-This work is a fork of the facelets 1.x code base intended to provide some optimization fixes.
+This work is a fork of the facelets 1.x code base intended to provide some optimizations and fixes.
 It is only useful for people stuck with JSF 1.2 and RichFaces 3.3, especially when using its AJAX features.
 
 Problem
