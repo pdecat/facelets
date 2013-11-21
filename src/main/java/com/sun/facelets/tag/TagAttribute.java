@@ -301,7 +301,7 @@ public final class TagAttribute {
                 // literal.
                 // This results in megabytes of savings but loss of debugging
                 // information
-                this.string = "no debbuging information available";
+                this.string = "no debugging information available";
             }
         }
         return this.string;
