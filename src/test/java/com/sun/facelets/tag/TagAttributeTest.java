@@ -19,6 +19,6 @@ public class TagAttributeTest extends FaceletTestCase {
         Location location = new Location("location", 1, 1);
         TagAttribute tagAttribute = new TagAttribute(location, "ns", "localName", "qName", "value");
 
-        assertEquals("no debbuging information available", tagAttribute.toString());
+        assertEquals("no debugging information available", tagAttribute.toString());
     }
 }
